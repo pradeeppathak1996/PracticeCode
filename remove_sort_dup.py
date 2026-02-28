@@ -4,8 +4,7 @@ prev = 0
 arr1 = []
 
 for i in arr:
-    if i != prev:
+    if i != prev:    
         arr1 += [i]
         prev = i
-        
 print(arr1)

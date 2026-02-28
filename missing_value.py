@@ -12,3 +12,19 @@ for i in arr:
     
 missing = xor_arr^xor_all
 print(missing)
+
+# Output = 5
+
+# ----------------------------
+
+arr = [2,4,6,10]
+
+i = 0
+while i < len(arr) - 1:
+    if arr[i+1] - arr[i] != 2:
+        missing = arr[i] + 2
+        print(missing)
+        break
+    i += 1
+
+# Output = 8

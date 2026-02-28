@@ -3,86 +3,93 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# SQLite DB (simple)
+# Database config (SQLite)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-# Model (Table)
+# ------------------ MODEL ------------------
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     email = db.Column(db.String(50))
+    address = db.Column(db.String(100))
 
-# Create DB
+# Create tables
 with app.app_context():
     db.create_all()
 
-
 # ------------------ CREATE ------------------
-@app.route('/user', methods=['POST'])
-def create_user():
-    data = request.json
-    new_user = User(name=data['name'], email=data['email'])
 
-    db.session.add(new_user)
+@app.route("/user", methods=["POST"])
+def create_user():
+    data = request.get_json()
+
+    user = User(
+        name=data.get("name"),
+        email=data.get("email"),
+        address=data.get("address")
+    )
+    db.session.add(user)
     db.session.commit()
 
     return jsonify({"message": "User created"}), 201
 
-
-# -------------------- READ --------------------
-
-@app.route('/users', methods=['GET'])
+# ------------------ READ ALL ------------------
+@app.route("/users", methods=["GET"])
 def get_users():
     users = User.query.all()
-    output = []
+    result = []
 
     for u in users:
-        output.append({
+        result.append({
             "id": u.id,
             "name": u.name,
-            "email": u.email
+            "email": u.email,
+            "address": u.address
         })
 
-    return jsonify(output)
+    return jsonify(result)
 
-# --------------------Single READ --------------------
-
-@app.route('/user/<int:id>', methods=['GET'])
+# ------------------ READ SINGLE ------------------
+@app.route("/user/<int:id>", methods=["GET"])
 def get_single_user(id):
     user = User.query.get(id)
 
     if not user:
-        return {"message": "User not found"}, 404
+        return jsonify({"message": "User not found"}), 404
 
-    return {
+    return jsonify({
         "id": user.id,
         "name": user.name,
-        "email": user.email
-    }
+        "email": user.email,
+        "address": user.address
+    })
 
-# -------------------- UPDATE --------------------
-
-@app.route('/user/<int:id>', methods=['PUT'])
+# ------------------ UPDATE ------------------
+@app.route("/user/<int:id>", methods=["PUT"])
 def update_user(id):
     user = User.query.get(id)
-    data = request.json
+    if not user:
+        return jsonify({"message": "User not found"}), 404
 
-    user.name = data["name"]
-    user.email = data["email"]
+    data = request.get_json()
+
+    user.name = data.get("name")
+    user.email = data.get("email")
+    user.address = data.get("address")
 
     db.session.commit()
-
     return jsonify({"message": "User updated"})
 
-
-# -------------------- DELETE --------------------
-
-@app.route('/user/<int:id>', methods=['DELETE'])
+# ------------------ DELETE ------------------
+@app.route("/user/<int:id>", methods=["DELETE"])
 def delete_user(id):
     user = User.query.get(id)
+    if not user:
+        return jsonify({"message": "User not found"}), 404
 
     db.session.delete(user)
     db.session.commit()

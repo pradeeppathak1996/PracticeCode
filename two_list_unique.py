@@ -1,15 +1,18 @@
 arr = [1,2,3,4,6,7]
 arr1 = [1,2,3,4,5,8]
 
-unique_arr = []
 hash_map = {}
+unique_arr = []
 
-for i in range(len(arr)):
-    hash_map[arr[i]] = 1
-for i in range(len(arr1)):
-    hash_map[arr1[i]] = 1
-    
+for i in arr:
+    hash_map[i] = 1
+
+for i in arr1:
+    hash_map[i] = 1
+
 for key in hash_map:
-    unique_arr = unique_arr + [key]
-    
+    unique_arr += [key]
+
 print(unique_arr)
+
+# [1, 2, 3, 4, 6, 7, 5, 8]

@@ -1,4 +1,4 @@
-# Function Decorator -------------------------
+# Function Decorator1 ------------
 
 def my_decorator(func):
     def wrapper():
@@ -13,13 +13,30 @@ def say_hello():
 
 say_hello()
 
-# Decorator With Arguments ------------------
+# Function Decorator2 --------------------
+
+def my_deco(addition):
+    def wrapper():
+        result = addition()
+        d = 10
+        return result + d
+    return wrapper
+
+@my_deco
+def addition():
+    a = 8
+    b = 7
+    c = a+b
+    return c
+print(addition())
+
+# Decorator With Arguments ------------
 
 def repeat(n):
-    def decorator(func):
+    def decorator(hello):
         def wrapper():
             for i in range(n):
-                func()
+                hello()
         return wrapper
     return decorator
 
@@ -29,7 +46,7 @@ def hello():
 
 hello()
 
-# Class-Based Decorator ---------------------------
+# Class-Based Decorator ------------
 
 class MyDecorator:
     def __init__(self, func):
@@ -46,9 +63,9 @@ def greet():
 
 greet()
 
-# Method Decorators (Inside Class) ----------------------------------- 
+# Method Decorators (Inside Class) ----------
 
-# @staticmethod
+# @staticmethod------
 
 class A:
     @staticmethod
@@ -57,7 +74,7 @@ class A:
 
 print(A.add(5, 3))
 
-# @classmethod
+# @classmethod------
 
 class A:
     name = "Pradeep"
@@ -68,3 +85,46 @@ class A:
 
 A.change_name()
 print(A.name)
+
+
+# -- Decorator issues --
+
+
+def int_check_decorator(addition):
+    def wrapper(num1, num2):
+        if type(num1) == int and type(num2) == int:
+            return addition(num1, num2)
+        else:
+            return None
+    return wrapper
+
+@int_check_decorator
+def addition(num1, num2):
+    return num1 + num2
+
+print(addition(10, 20))     # 30
+print(addition(10, "20"))   # None
+print(addition(5.5, 2))    # None
+
+# Number of arguments Unknown -----
+
+def valid(func):
+    i = 0
+    def wrapper(*args):
+        if i < len(args):
+            return func(*args)
+        return None
+    return wrapper
+
+@valid
+def addition(*nums):
+    total = 0
+    i = 0
+    while i < len(nums):
+        total += nums[i]
+        i += 1
+    return total
+
+print(addition(10, 20))        # 30
+print(addition(10, 20, 30))    # 60
+print(addition(5, 2, 8, 1))    # 16

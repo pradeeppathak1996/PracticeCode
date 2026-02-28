@@ -4,7 +4,6 @@ index = -1
 
 for i in range(len(arr)):
     if arr[i] == num:
-        
         index = i
         break
     
