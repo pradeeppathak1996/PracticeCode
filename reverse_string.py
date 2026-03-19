@@ -3,6 +3,7 @@ s = "my name is pradeep"
 res = ""
 word = ""
 i = 0
+
 while i < len(s):
     if s[i] != " ":
         word = s[i] + word
@@ -14,7 +15,7 @@ while i < len(s):
 res += word
 print(res)
 
-# output -> "ym eman si peedarp"
+# output ->  "ym eman si peedarp"
 
 # ------------------------
 

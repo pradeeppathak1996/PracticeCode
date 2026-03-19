@@ -9,7 +9,6 @@ def add_argumanets(*args):
 add_argumanets(4,5,7)
 add_argumanets(5, 10, 15, 20)
 
-
 # --------- kwargs ----------------------
 
 def show_details(**kwargs):

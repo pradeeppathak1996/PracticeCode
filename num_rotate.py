@@ -9,7 +9,19 @@ print(arr)
 
 # output = [2, 3, 4, 5, 1]
 
-# ---------- number rotating ------------------
+# ---------- 2 elements rotating ------------------
+
+arr = [1,2,3,4,5]
+n = 2
+for _ in range(n):
+    temp = arr[0]
+    for i in range(len(arr) - 1):
+        arr[i] = arr[i+1]
+    arr[-1] = temp
+
+print(arr)
+
+# --------------number rotating ---------------------------
 
 arr = [1, 2, 3, 4, 5]
 k = 2
