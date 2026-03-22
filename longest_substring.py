@@ -17,5 +17,5 @@ while i < len(s):
     if current_len > max_len:
         max_len = current_len
     i = i + 1
-
+    
 print(max_len)
