@@ -1,24 +1,20 @@
 -- Duplicate email from users table --
 
-SELECT email 
-FROM users
+SELECT email FROM users
 GROUP BY email
 HAVING COUNT(*) > 1;
 
 -- SECOND HIGHEST VALUE --
 
-SELECT MAX(salary)
-FROM emp
+SELECT MAX(salary) FROM emp
 WHERE salary < (SELECT MAX(salary) FROM emp);
 
 -- Duplicate Records Delete --
 
 DELETE FROM emp
 WHERE id NOT IN(
-    SELECT MIN(id)
-    FROM emp
-    GROUP BY email 
-    );
+    SELECT MIN(id) FROM emp
+    GROUP BY email);
 
 -- Employees with No Department --
 

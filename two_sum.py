@@ -1,8 +1,8 @@
 arr = [1, 3, 2, 3, 4, 4, 5, 7, 2]
 
 target = 6
-i = 0
 map = {}
+i = 0
 
 while i < len(arr):
     num = arr[i]

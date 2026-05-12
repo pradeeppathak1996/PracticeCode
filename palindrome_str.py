@@ -8,7 +8,6 @@ for i in range(len(s) // 2):
         break
     
 if is_palindrome:
-    
     print(s , "is a Palindrome")
 else:
     print(s , "is not a Palindrome")

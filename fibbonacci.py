@@ -4,11 +4,11 @@ a = 0
 b = 1 
 
 for i in range(1, num + 1):
-    a , b = b , a+b
+    a, b = b, a+b
     
 print(b)
 
-# recursion -----
+# -------- recursion -----
 
 def fib(n):
     if n == 0:

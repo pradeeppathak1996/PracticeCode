@@ -19,7 +19,7 @@ print("Deep:", deep)
 # Andar ke (nested objects) same reference share karte hain
 
 
-# Deep:      [[1, 2, 3], [4, 5, 6]].    A completely independent copy is created, including all nested objects, with no sharing.
+# Deep:    [[1, 2, 3], [4, 5, 6]].    A completely independent copy is created, including all nested objects, with no sharing.
 
 # Pura object + nested objects sab copy hota hai
 # Koi reference share nahi hota

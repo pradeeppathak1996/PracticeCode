@@ -3,6 +3,7 @@ arr = ["ate" , "eat", "tea", "tan", "nat", "bat"]
 freq = {}
 
 for word in arr:
+    
     key = "".join(sorted(word))
 
     if key in freq:

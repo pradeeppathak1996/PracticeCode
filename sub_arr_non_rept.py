@@ -1,4 +1,4 @@
-s = "abcabcbb"    # change input here
+s = "abcabcbb"
 
 char_index = {}   # to store last index of character
 left = 0

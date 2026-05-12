@@ -26,6 +26,5 @@ result = []
 for i in arr:
     if i not in seen:
         seen[i] = 1
-        result.append(i)
-        
+        result.append(i) 
 print(result)

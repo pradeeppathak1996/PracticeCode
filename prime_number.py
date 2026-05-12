@@ -39,3 +39,17 @@ while True:
         break
 
     candidate = candidate + 1
+
+# 3 prime numbers only between 20 to 50 ---------------------------
+
+count = 0
+for num in range(20, 51):
+    for j in range(2, num):
+        if num % j == 0:
+            break
+    else:
+        print(num)
+        count = count + 1
+    
+    if count == 3:
+        break
